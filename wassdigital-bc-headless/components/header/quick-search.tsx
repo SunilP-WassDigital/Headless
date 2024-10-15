@@ -33,20 +33,24 @@ export const QuickSearch = ({ logo }: SearchProps) => {
 
   const fetchSearchResults = async (term: string) => {
     const { data: searchResults } = await getSearchResults(term);
-
+    const selectedCurrency = 'INR';
     if (isSearchQuery(searchResults)) {
       return {
         products: searchResults.products.map((product) => {
-          const price = pricesTransformer(product.prices, format);
-
-          return {
-            name: product.name,
-            href: product.path,
-            image: product.defaultImage
-              ? { src: product.defaultImage.url, altText: product.defaultImage.altText }
-              : undefined,
-            price,
-          };
+          if(product.name){
+            const price = product?.prices?.[selectedCurrency];
+            return {
+              name: product.name,
+              href: product.path,
+              image: product.defaultImage
+                ? { src: product.defaultImage.url, altText: product.defaultImage.altText }
+                : undefined,
+              price,
+            };
+          }else{
+            return [];
+          }
+          
         }),
         categories:
           searchResults.products.length > 0
@@ -75,7 +79,7 @@ export const QuickSearch = ({ logo }: SearchProps) => {
               ).map(([name, path]) => {
                 return { label: name, href: path };
               })
-            : [],
+            : []
       };
     }
 
