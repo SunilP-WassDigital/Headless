@@ -26,21 +26,21 @@ export const HomePagePosts = async () => {
 
   // Return JSX
   return (<>
-    <div className='flex items-center justify-between'><h2 className='text-3xl font-black lg:text-4xl'>Contentful Post</h2></div>
-    <div className="grid grid-cols-4 gap-4 p-10">
-      {data?.pageBlogPostCollection?.items.map((post:any) => (
-        <div className="grid-cols-4" key={post?.sys.id}>
-          <Image
-            alt={post?.featuredImage?.description || 'No description'}
-            height={200}
-            src={post?.featuredImage?.url || '/placeholder.png'} // Add a fallback URL for the image
-            width={200}
-          />
-           <h2 className=''>{post?.title}</h2>
-         
-        </div>
-      ))}
-    </div>
+      <div className="flex items-center justify-between">
+        <h2 className="text-3xl font-black lg:text-4xl">Contentful Post</h2>
+      </div>
+      <div className="grid grid-cols-4 gap-4 p-10">
+        {data?.pageBlogPostCollection?.items.map((post) => (
+          <div key={post?.sys.id}>
+            <img
+              alt={post?.featuredImage?.description || 'No description'}
+              src={post?.featuredImage?.url || '/placeholder.png'}
+              className="w-full h-48 object-cover"
+            />
+            <h2 className="text-center">{post?.title}</h2>
+          </div>
+        ))}
+      </div>
     </>
   );
 };
