@@ -4,6 +4,9 @@ import { getFormatter } from 'next-intl/server';
 import { LocaleType } from '~/i18n';
 import { contentfulClient, contentfulGraphql } from '~/lib/contentful/client';
 import RichText from '~/components/contentful/RichText';
+import { Button } from '@contentful/f36-components';
+import { createContext } from 'react';
+
 
 interface BlogPostPageParams {
   slug: string;
@@ -116,6 +119,7 @@ export default async function ContentfulPageDetails({ params: { slug, locale } }
   
   return (
     <div className="mx-auto max-w-6xl">
+      <Button variant="primary">Your button</Button>
       <Link href="/contentful">← Posts</Link>
       {data.data?.pageBlogPostCollection?.items.map((post: any) => (
         <div className="prose mt-8 border-t pt-8" key={post?.sys.id}>

@@ -7,7 +7,7 @@ import { graphql } from '~/client/graphql';
 import { revalidate } from '~/client/revalidate-target';
 import { ProductCardCarousel } from '~/components/product-card-carousel';
 import { ProductCardCarouselFragment } from '~/components/product-card-carousel/fragment';
-import { Hero } from '~/components/hero';
+import { BannerSlides } from '~/components/banner-slider';
 import { LocaleType } from '~/i18n/routing';
 import { HomePagePosts } from '~/components/contentful/index';
 
@@ -59,7 +59,7 @@ export default async function Home({ params: { locale } }: Props) {
 
   return (
     <>
-      <Hero />
+      <BannerSlides />
 
       <div className="my-10">
         <ProductCardCarousel
